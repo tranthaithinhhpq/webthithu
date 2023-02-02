@@ -9,15 +9,18 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import User from "./components/User/User";
 import Admin from "./components/Admin/Admin";
+import Home from "./components/Home/Home";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Header />} />
-        <Route path="/user" element={<User />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/" element={<App />}>
+          <Route index element={<Home />} />
+          <Route path="/user" element={<User />} />
+          <Route path="/admin" element={<Admin />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </Provider>
