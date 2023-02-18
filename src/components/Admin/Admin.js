@@ -1,9 +1,25 @@
-const Admin = (props) => {
+import Sidebar from "./Sidebar";
+import "./Admin.scss";
+import React, { useState } from 'react';
+import {
+  FaTachometerAlt,
+  FaGem,
+  FaList,
+  FaGithub,
+  FaRegLaughWink,
+  FaHeart,
+} from "react-icons/fa";
+
+const User = (props) => {
+  const [collapsed, setCollapsed] = useState(false);
   return (
-    <div>
-      <h1>This is the Admin page</h1>
+    <div className="admin-container">
+      <div className="admin-sidebar"><Sidebar collapsed={collapsed}/></div>
+      <div className="admin-content"><FaList onClick={()=>setCollapsed(!collapsed)}/> </div>
+      
+      
     </div>
   );
 };
 
-export default Admin;
+export default User;
