@@ -2,9 +2,13 @@
     display: flex;
     .admin-sidebar{
         height: 100vh;
-        &.admin-content{
+        
+    }
+    .admin-content{
+        height: 40px;
+        border: solid red 1px;
+        
 
-        }
     }
 
 }
