@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import "../Content/ModalAddUser.scss";
 
-const ModalAddUser= () => {
+const ModalAddUser = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [picture, setPicture] = useState('');
+  const handleUploadImage = (event) => {
+    event.target.files[0] ? setPicture(URL.createObjectURL(event.target.files[0])) : console.log("no")
+    
+  };
 
   return (
     <>
@@ -19,39 +25,44 @@ const ModalAddUser= () => {
           <Modal.Title>Add new user</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form class="row g-3">
-            <div class="col-md-6">
-              <label for="inputEmail4" class="form-label">
-                Email
-              </label>
-              <input type="email" class="form-control" id="inputEmail4" />
+          <form className="row g-3">
+            <div className="col-md-6">
+              <label className="form-label">Email</label>
+              <input type="email" className="form-control" id="inputEmail4" />
             </div>
-            <div class="col-md-6">
-              <label for="inputPassword4" class="form-label">
-                Password
-              </label>
-              <input type="password" class="form-control" id="inputPassword4" />
+            <div className="col-md-6">
+              <label className="form-label">Password</label>
+              <input
+                type="password"
+                className="form-control"
+                id="inputPassword4"
+              />
             </div>
-            <div class="col-md-6">
-              <label for="inputUsername" class="form-label">
-                Username
-              </label>
-              <input type="text" class="form-control" id="inputCity" />
+            <div className="col-md-6">
+              <label className="form-label">Username</label>
+              <input type="text" className="form-control" id="inputCity" />
             </div>
-            <div class="col-md-6">
-              <label for="inputRole" class="form-label">
-                Role
-              </label>
-              <select id="inputRole" class="form-select">
-                <option selected>User</option>
-                <option selected>Admin</option>
+            <div className="col-md-6">
+              <label className="form-label">Role</label>
+              <select id="inputRole" className="form-select">
+                <option defaultValue="User">User</option>
+                <option value="Admin">Admin</option>
               </select>
             </div>
-            <div class="col-md-6">
-              <label for="inputUsername" class="form-label">
-                Image
-              </label>
-              <input type="file" />
+            <div className="col-md-6">
+              <label htmlFor="choseimage" className="uploadFile-btn">Upload file </label>
+              <input
+                hidden
+                id="choseimage"
+                type="file"
+                onChange={(event) => handleUploadImage(event)}
+              />
+            </div>
+
+            <div className="col-md-12 previewImage">
+              {picture === '' ? <span>Preview Image</span> : <img src = {picture}/>}
+              
+              
             </div>
           </form>
         </Modal.Body>
@@ -66,6 +77,6 @@ const ModalAddUser= () => {
       </Modal>
     </>
   );
-}
+};
 
 export default ModalAddUser;
